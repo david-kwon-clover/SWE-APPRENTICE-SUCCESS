@@ -4,10 +4,9 @@ Examples:
 isFamous(50000) should return false
 isFamous(150000) should return true
 */
-
-
-
-
+const isFamous = (followerCount) => {
+    return followerCount > 100_000 ? true : false;
+}
 
 // 2. Define an arrow function, `isHot`, that takes in a temperature (in Celsius), and returns a string indicating whether or not the weather is considered "hot". If the temperature is above 30 degrees, it is hot, otherwise it is not. USE THE TERNARY OPERATOR
 /* 
@@ -15,10 +14,9 @@ Examples:
 isHot(25) should return `not hot`
 isHot(35) should return `hot`
 */
-
-
-
-
+const isHot = (tempC) => {
+    return tempC > 30 ? "hot" : "not hot";
+}
 
 /* 3. Define an arrow function, `gradeSystem`, that takes a numerical score as an argument and returns the corresponding letter grade based on the following scale:
     - 90 and above: "A"
@@ -31,10 +29,19 @@ gradeSystem(90) should return "A"
 gradeSystem(85) should return "B"
 gradeSystem(55) should return "F"
 */
-
-
-
-
+const gradeSystem = (score) => {
+    if(score >= 90) {
+        return "A";
+    } else if(score >= 80 && score < 90) {
+        return "B";
+    } else if(score >= 70 && score < 80) {
+        return "C";
+    } else if(score >= 60 && score < 70) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
 
 // 4. Define an arrow function, `calculateDiscount`, that takes the original price of an item and a discount percentage as arguments. The function should return the final price after applying the discount. If the discount percentage is greater than or equal to 50, there's an additional 5% discount applied.
 /*
@@ -42,10 +49,12 @@ Examples:
 calculateDiscount(100, 25) returns 75 (a 25% discount)
 calculateDiscount(100, 50) returns 45 (a 55% discount)
 */
-
-
-
-
+const calculateDiscount = (originalPrice, discountPercent) => {
+    if(discountPercent >= 50) {
+        discountPercent += 5;
+    }
+    return originalPrice * ((100 - discountPercent)/100);
+}
 
 /* 5. Write a function greetByTime that takes the current hour (in 24-hour format) as an argument and returns a greeting message based on the time of the day:
     5:00 - 11:59: "Good morning!"
@@ -58,7 +67,17 @@ Examples:
     greetByTime(20) should return "Good evening!"
     greetByTime(2) should return "Good night!"
 */
-
+const greetByTime = (currentHour) => {
+    if(currentHour >= 5 && currentHour < 12) {
+        return "Good morning!";
+    } else if(currentHour >= 12 && currentHour < 18) {
+        return "Good afternoon!";
+    } else if(currentHour >= 18 && currentHour < 24) {
+        return "Good evening!";
+    } else {
+        return "Good night!";
+    }
+}
 
 
 
