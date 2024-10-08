@@ -9,6 +9,7 @@ sumTypeOf(true, 1); ==> 'number'
 
 function sumTypeOf(a, b) {
   // Write your code here
+  return typeof(a + b);
 }
 
 // 2. Complete the function validateIt. The function accepts two parameters: variable and type and checks if type of variable is matching type. Return true if types match or false if not.
@@ -19,6 +20,7 @@ validateIt("42", 'number'); ==> false
 
 function validateIt(variable, type) {
   // Write your code here
+  return (typeof variable === type);
 }
 
 // 3. PREDICT THE OUTPUT: Four expressions (expression1, expression2, expression3, and expression4) have been provided. Set the corresponding answer variable to be the expected output. Do NOT simply set the expression equal to the variable.
@@ -31,10 +33,10 @@ let expression1 = true + "1";
 let expression2 = "number" + 15 + 3;
 let expression3 = true == "true";
 let expression4 = true + true + false + 4;
-let answer1;
-let answer2;
-let answer3;
-let answer4;
+let answer1 = "true1";
+let answer2 = "number153";
+let answer3 = false;
+let answer4 = 6;
 
 // 4. Given: a sequence of different type of values (number, string, boolean). You should return an object with a separate properties for each of types presented in input. Each property should contain an array of corresponding values.
 /* - keep order of values like in input array
@@ -53,7 +55,17 @@ Expected output is:
 
 */
 
-function separateTypes(input) {}
+function separateTypes(input) {
+  return input.reduce((types, element) => {
+    if(!types[typeof element]) {
+      types[typeof element] = [];
+      types[typeof element].push(element);
+    } else {
+      types[typeof element].push(element);
+    }
+    return types;
+  }, {})
+}
 
 // DO NOT EDIT BELOW THIS LINE
 export {
