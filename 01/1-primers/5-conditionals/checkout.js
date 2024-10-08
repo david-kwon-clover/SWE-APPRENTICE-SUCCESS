@@ -21,8 +21,7 @@ let amtInWallet = 20;
 let balance = null;
 
 // YOUR CODE HERE
-
-
+balance = amtInWallet - totalPrice;
 
 
 // DO NOT EDIT BELOW

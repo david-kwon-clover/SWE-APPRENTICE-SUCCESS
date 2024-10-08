@@ -16,10 +16,7 @@ let activity = "dancing";
 let happy;
 
 // YOUR CODE HERE
-
-
-
-
+activity === "dancing" || activity === "swimming" ? happy = true : happy = false;
 
 
 // DO NOT EDIT BELOW
