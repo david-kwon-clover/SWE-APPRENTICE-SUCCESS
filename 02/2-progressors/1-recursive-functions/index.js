@@ -12,7 +12,14 @@ The console will log:
 0
 */
 
-function recursiveCounter(n) {}
+function recursiveCounter(n) {
+  console.log(n);
+  n--;
+  if(n < 0) {
+    return
+  }
+  recursiveCounter(n);
+}
 
 /* 2. In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. For example, 5! is 5 factorial or 5 * 4 * 3 * 2 * 1 = 120. 
 
@@ -26,7 +33,15 @@ factorial(5); => 120; (5 * 4 * 3 * 2 * 1)
 factorial(6) => 720; (6 * 5 * 4 * 3 * 2 * 1)
 */
 
-function factorial(n) {}
+function factorial(n) {
+  if(n === 0) {
+    return 1;
+  }
+  if(n < 0) {
+    return false;
+  }
+  return n * factorial(n - 1);
+}
 
 /* 3. How many strings of length 10 can you make using only 'a' and 'b'? Can you write them all down? If the question said of length 3, we could do this by hand:
   'aaa'
@@ -42,9 +57,24 @@ However, what if it was a string of length 10...that seems impossible to do by h
 Examples:
 getCombinations(2); => ['aa', 'ab', 'ba', 'bb']
 getCombinations(3); => ['aaa', 'aab', 'aba', 'baa', 'abb', bab', 'bba', 'bbb']
+getCombinations(4); => ['aaaa', 'aaab', 'aabb', 'abbb', 'abab', 'abba', 'abaa', 'aaba', 'bbbb', 'bbba', 'bbaa', 'baaa', 'baba', 'baab', 'bbab', 'babb']
 */
 
-function getCombinations(n) {}
+function getCombinations(n) {
+  if (n < 0) return false; 
+  if (n === 0) return ['']; // Base case: return an array with an empty string
+
+  const combinations = getCombinations(n - 1); // Recursive call
+  const result = [];
+
+  // Build combinations by appending 'a' and 'b'
+  for (const combo of combinations) {
+    result.push(combo + 'a'); // Add 'a'
+    result.push(combo + 'b'); // Add 'b'
+  }
+
+  return result;
+}
 
 /* 4. Suppose we have a list of pizza toppings:
   pepperoni
@@ -80,7 +110,10 @@ Some example toppings have been provided for you!
 
 const toppings = ["pepperoni", "mushroom", "pineapple", "red onion"];
 
-function getPizzas(toppings, n) {}
+function getPizzas(toppings, n) {
+  
+}
+
 
 // DO NOT EDIT BELOW THIS LINE
 export { recursiveCounter, factorial, getCombinations, getPizzas, toppings };
