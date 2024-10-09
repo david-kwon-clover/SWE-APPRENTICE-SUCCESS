@@ -15,7 +15,9 @@ const students = {
   Wilmer: 22,
   Fatima: 21,
 };
-function getStudents(students) {}
+function getStudents(students) {
+  return Object.keys(students);
+}
 
 // 2. You have been provided an object, cart, that contains all the objects you have bought in the store. Create a function called getTotal that accepts the cart object and returns the total cost of all the items in your cart.
 let cart = {
@@ -31,7 +33,13 @@ let cart = {
   Sandwich: 6.5,
 };
 
-function getTotal(cart) {}
+function getTotal(cart) {
+  const costs = Object.values(cart);
+  return costs.reduce((sum, cost) => {
+    sum += cost;
+    return sum;
+  }, 0)
+}
 
 // 3. Create an object called employee with the following:
 
@@ -45,7 +53,26 @@ function getTotal(cart) {}
                                   If this happens, do not add the number, and return "Shift limit reached"  
 */
 
-let employee = {};
+let employee = {
+  weeklyHours: [7, 6, 7, 7],
+  getTotalHours() {
+    return this.weeklyHours.reduce((totalHours, shiftHours) => {
+      totalHours += shiftHours;
+      return totalHours;
+    }, 0)
+  },
+  addShift(shiftLength) {
+    const potentialHours = this.getTotalHours() + shiftLength;
+    const shiftCount = this.weeklyHours.length + 1;
+    
+    if(potentialHours <= 40 && shiftCount <= 5) {
+      this.weeklyHours.push(shiftLength);
+      return "Shift added"
+    } else {
+      return "Shift limit reached";
+    }
+  }
+};
 
 // 4. A an array of objects called people has been imported below
 import people from "./seed.js";
@@ -53,12 +80,27 @@ import people from "./seed.js";
 
 // a. Update the empty peopleNames array with the all the names stored in people.
 let peopleNames = [];
+peopleNames = people.map((person) => {
+  return person.name;
+})
 
 // b. Determine the average age of all the people. Store the answer in the variable averageAge. Round to the nearest whole number
 let averageAge;
+const totalAge = people.reduce((ageSum, person) => {
+  ageSum += person.age;
+  return ageSum;
+}, 0)
+averageAge = Math.round(totalAge / people.length);
 
 // c. What percentage of people have black hair. Store in the variable blackHairPercent and round to the nearest whole number.
 let blackHairPercent;
+const blackHairTotal = people.reduce((blackHairCount, person) => {
+  if(person.hairColor === "black") {
+    blackHairCount++;
+  }
+  return blackHairCount;
+}, 0)
+blackHairPercent = Math.round((blackHairTotal / people.length) * 100);
 
 // d. Every people in the people array have a country. Create a function called countryList that accepts the people array and returns an object of the total count by country.
 /*
@@ -71,7 +113,16 @@ findFavorite(people) => returns
     ...
 }
 */
-function countryList(people) {}
+function countryList(people) {
+  return people.reduce((countryCount, person) => {
+    if(!countryCount[person.country]) {
+      countryCount[person.country] = 1;
+    } else {
+      countryCount[person.country] += 1;
+    }
+    return countryCount;
+  }, {})
+}
 
 // e. Create a function findFavorite that accepts the people object and returns and object with the number of times each favorite show appears in the people array.
 /*
@@ -85,7 +136,19 @@ findFavorite(people) => returns
 }
 */
 
-function findFavorite(people) {}
+function findFavorite(people) {
+  return people.reduce((favoriteShowsCount, person) => {
+    for(let i = 0; i < person.favoriteShows.length; i++) {
+      if(!favoriteShowsCount[person.favoriteShows[i]]) {
+        favoriteShowsCount[person.favoriteShows[i]] = 1;
+      } else {
+        favoriteShowsCount[person.favoriteShows[i]]++;
+      }
+    }
+    return favoriteShowsCount;
+  }, {})
+}
+
 
 export {
   getStudents,
