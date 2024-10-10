@@ -2,11 +2,17 @@
 let nums = [3, 10, 1, 25];
 
 let doubles;
+doubles = nums.map((num) => {
+  return num * 2;
+})
 
 // 2. An array called bigNumbers has been created. Update the smallNums variable with the values in bigNumbers divided by 2.
 let bigNumbers = [100, 200, 300, 1000, 525600];
 
 let smallNums;
+smallNums = bigNumbers.map((bigNum) => {
+  return bigNum / 2;
+})
 
 // 3. An array of names has been provided. Update the coders variable with the name and the string "is a coder" added to the end of the string"
 /*
@@ -19,11 +25,20 @@ coders = ["Becky is a coder", "Luther is a coder"];
 let names = ["Yadira", "Kadiatou", "Isaiah", "Fancisco", "Darius"];
 
 let coders;
+coders = names.map((name) => {
+  return name += " is a coder";
+})
 
 // 4. The variables evens and odds have been initialized. Using a filter function, update each with an array of even and odd values stored in the oneToTen array.
 let oneToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let evens;
 let odds;
+evens = oneToTen.filter((num) => {
+  return num % 2 === 0;
+})
+odds = oneToTen.filter((num) => {
+  return num % 2 === 1;
+})
 
 // Use the following array for questions 5 and 6
 let superheros = [
@@ -36,14 +51,24 @@ let superheros = [
 
 // 5. Use a filter function to update the variable longNames with an array of all superheros that have names longer than 10 characters.
 let longNames;
+longNames = superheros.filter((name) => {
+  return name.length > 10;
+})
 
 // 6. Update the variable containsC with an array of superheros that have at least one c in their name. This should account for both uppercase and lowercase "c".
 let containsC;
+containsC = superheros.filter((name) => {
+  return name.includes("c") || name.includes("C");
+})
 
 // 7. An array of numbers has been stored in sumThis. Sum all the values and store the final value in the total variable.
 let sumThis = [7, 1, 3, 5, 6, 2, 8, 10, 0, 4, 9];
 
 let total;
+total = sumThis.reduce((sum, element) => {
+  sum += element;
+  return sum;
+}, 0)
 
 // 8. An array called epic has been created for you. Update the story variable so it contains a single string with all the words combined together.
 /*
@@ -53,6 +78,10 @@ Final output => "a long time ago in a galaxy far far away"
 let epic = ["a", "long", "time", "ago", "in a", "galaxy", "far far", "away"];
 
 let story;
+story = epic.reduce((fullString, string) => {
+  fullString += `${string} `;
+  return fullString;
+}, "").trimEnd();
 
 // Use the following for questions 9 and 10
 const people = [
@@ -101,6 +130,9 @@ const people = [
 // 9. Filter the people array to be an array of people that are older than 25. Store the value in the variable oldPeople.
 
 let oldPeople;
+oldPeople = people.filter((person) => {
+  return person.age > 25;
+})
 
 // 10. We need an object that contains the name as a key and the nickname as a value. Store the value in the variable nicknames.
 /*
@@ -113,6 +145,10 @@ Example:
 */
 
 let nicknames;
+nicknames = people.reduce((nicknameTracker, person) => {
+  nicknameTracker[person.name] = person.nickname;
+  return nicknameTracker;
+}, {})
 
 // 11. An array of objects containing students and test scores has been stored in the students variable. In the variable highPerformers, store only those students that have an average score greater than or equal to a 90.
 const students = [
@@ -123,6 +159,12 @@ const students = [
 ];
 
 let highPerformers;
+highPerformers = students.filter((student) => {
+  return ((student.scores.reduce((total, score) => {
+    total += score;
+    return total;
+  }, 0) / student.scores.length) >= 90)
+})
 
 // 12. A 2D array of letters has been stored in the variable values. Update the counts variable with an object whose property names are the values from the arrays and their value is the number of their occurrences. HINT: Take a look at .flat() method!
 /*
@@ -144,6 +186,15 @@ const values = [
 ];
 
 let counts;
+counts = values.flat().reduce((counter, element) => {
+  if(!counter[element]) {
+    counter[element] = 1;
+  } else {
+    counter[element]++;
+  }
+  return counter;
+}, {})
+
 
 // DO NOT EDIT BELOW THIS LINE
 export {
