@@ -16,4 +16,21 @@
 
 */
 
-export default class Athlete {}
+export default class Athlete {
+    constructor(name, events = []) {
+        this.name = name;
+        this.events = events;
+    }
+
+    addEvent(event) {
+        this.events.push(event);
+    } 
+
+    deleteEvent(event) {
+        if(this.events.includes(event)) {
+            this.events.splice(this.events.indexOf(event), 1);
+        }
+    }
+}
+
+
