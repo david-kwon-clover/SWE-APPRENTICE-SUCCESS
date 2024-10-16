@@ -33,4 +33,24 @@ try {
 
 */
 
-export default class BankAccount {}
+export default class BankAccount {
+  constructor(balance) {
+    this.balance = balance;
+  }
+
+  deposit(amount) {
+    this.balance += amount;
+  }
+
+  withdraw(amount) {
+    if(this.balance >= amount) {
+      this.balance -= amount;
+    } else {
+      throw new Error("Insufficient balance.");
+    }
+  }
+
+  getBalance() {
+    return this.balance;
+  }
+}
