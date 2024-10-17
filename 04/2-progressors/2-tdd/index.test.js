@@ -40,3 +40,28 @@ describe("Subtracting and Multiplying", () => {
     })
 
 })
+
+describe("Adding arrays", () => {
+    let arr1, arr2, arr3, arr4;
+    beforeEach(() => {
+        arr1 = [1, 2, 3];
+        arr2 = [7, 6, 5];
+        arr3 = [4, 8, 2, 7];
+        arr4 = ["fart", "fart", "fart"];
+    })
+
+    test("addingArrays should handle arrays of different lengths", () => {
+        const differentLengths = addingArrays(arr1, arr3);
+        expect(differentLengths).toEqual("Arrays are different lengths.");
+    })
+
+    test("addingArrays should detect invalid input types", () => {
+        const differentTypes = addingArrays(arr2, arr4);
+        expect(differentTypes).toEqual("Not all elements are numbers.");
+    })
+
+    test("addingArrays should correctly add elements from two number arrays with the same length", () => {
+        const correctlyAddArrays = addingArrays(arr1, arr2);
+        expect(correctlyAddArrays).toEqual([8, 8, 8]);
+    })
+})
